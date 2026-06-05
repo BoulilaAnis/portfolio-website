@@ -38,9 +38,9 @@ const Navbar = () => {
     <nav className=" py-3 border-b">
       <div className="flex justify-between items-center">
         <AnimatedThemeToggler />
-        <h2 className="relative w-32 h-10">
-          <Link href="/" className="block w-full h-full">
-            <Logo className="w-full h-full text-primary dark:text-white transition-colors duration-200" />
+        <h2 className="w-12 h-10 group">
+          <Link href="/" className="block w-full h-full" aria-label="Home">
+            <Logo className="  rounded-full w-fit h-fit text-primary  transition-all duration-300 ease-out group-hover:rotate-45" />
           </Link>
         </h2>
         <ul className="hidden md:flex gap-3">
