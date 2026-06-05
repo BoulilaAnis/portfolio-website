@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { ForwardRefExoticComponent, useState } from 'react'
 import { Button } from '../ui/button'
 import Logo from '@/components/Navbar/Logo'
+import { AnimatedThemeToggler } from '../ui/animated-theme-toggler'
 
 type navLink = {
   label: string | React.ReactNode
@@ -36,6 +37,7 @@ const Navbar = () => {
   return (
     <nav className=" py-3 border-b">
       <div className="flex justify-between items-center">
+        <AnimatedThemeToggler />
         <h2 className="relative w-32 h-10">
           <Link href="/" className="block w-full h-full">
             <Logo className="w-full h-full text-primary dark:text-white transition-colors duration-200" />

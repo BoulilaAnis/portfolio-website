@@ -4,6 +4,35 @@
 
 @custom-variant dark (&:is(.dark *));
 
+::view-transition-old(theme-toggler) {
+  animation: 400ms ease-out both slide-out;
+}
+
+::view-transition-new(theme-toggler) {
+  animation: 400ms ease-in both slide-in;
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 :root {
   --background: oklch(0.9399 0.0203 345.6985);
   --foreground: oklch(0.4712 0 0);
@@ -187,4 +216,10 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
