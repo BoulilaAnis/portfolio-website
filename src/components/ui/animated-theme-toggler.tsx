@@ -243,20 +243,16 @@ export const AnimatedThemeToggler = ({
   }, [shape, fromCenter, duration, isDark, isControlled, onThemeChange])
 
   return (
-      <button
-        type="button"
-        ref={buttonRef}
-        onClick={toggleTheme}
-        className={cn(className)}
-        {...props}
-      >
-        <div
-          style={{ viewTransitionName: 'theme-toggler' }}
-          className="bg-accent p-2 rounded-xl flex justify-center items-center"
-        >
-        {isDark ? <Sun /> : <Moon />}
-        <span className="sr-only">Toggle theme</span>
-        </div>
-      </button>
+    <button
+      type="button"
+      ref={buttonRef}
+      onClick={toggleTheme}
+      style={{ viewTransitionName: 'theme-toggler' }}
+      className={`${cn(className)} bg-accent p-2 rounded-xl flex justify-center items-center cursor-pointer`}
+      {...props}
+    >
+      {isDark ? <Sun /> : <Moon />}
+      <span className="sr-only">Toggle theme</span>
+    </button>
   )
 }
