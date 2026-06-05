@@ -1,5 +1,6 @@
 import React from 'react'
 import './styles.css'
+import Navbar from '@/components/Navbar/Navbar'
 
 export const metadata = {
   description: 'this is anis portfolio',
@@ -11,7 +12,10 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="en" className="dark">
-      <body>
+      <body className="lg:max-w-[70%] md:max-w-[75%] sm:max-w-[80%] max-w-[90%] mx-auto">
+        <header>
+          <Navbar />
+        </header>
         <main>{children}</main>
       </body>
     </html>
