@@ -66,6 +66,7 @@ const Navbar = () => {
           className="z-70 md:hidden rounded-xl"
           variant="ghost"
           onClick={() => setIsOpen((prev) => !prev)}
+          onMouseDown={() => playClick()}
         >
           {!isOpen ? <HugeiconsIcon icon={Menu01Icon} /> : <HugeiconsIcon icon={Cancel02Icon} />}
         </Button>
