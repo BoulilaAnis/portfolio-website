@@ -11,19 +11,23 @@ import Logo from '@/components/Navbar/Logo'
 type navLink = {
   label: string | React.ReactNode
   src: string
+  isExternal: boolean
 }
 const navLinks: navLink[] = [
   {
     label: 'Home',
     src: '/',
+    isExternal: false,
   },
   {
     label: 'Projects',
     src: '/projects',
+    isExternal: false,
   },
   {
     label: <HugeiconsIcon icon={Github01Icon} />,
     src: 'https://github.com/boulilaAnis',
+    isExternal: true,
   },
 ]
 
@@ -43,6 +47,7 @@ const Navbar = () => {
               <Link
                 className="text-accent-foreground inline-block pb-1 relative group"
                 href={link.src}
+                target={link.isExternal ? '_blank' : '_self'}
               >
                 {link.label}
                 <span className="absolute rounded-sm bottom-0 left-0 w-full h-0.5 bg-accent group-hover:scale-x-100 scale-x-0 transition-transform duration-400 orgin-center ease-in-out " />
