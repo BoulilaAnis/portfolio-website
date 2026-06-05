@@ -1,10 +1,11 @@
 'use client'
 
-import { HugeiconsIcon, IconSvgElement } from '@hugeicons/react'
+import useSound from 'use-sound'
+import { HugeiconsIcon } from '@hugeicons/react'
 import { Menu01Icon, Cancel02Icon, Github01Icon } from '@hugeicons/core-free-icons'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ForwardRefExoticComponent, useState } from 'react'
+import { useState } from 'react'
 import { Button } from '../ui/button'
 import Logo from '@/components/Navbar/Logo'
 import { AnimatedThemeToggler } from '../ui/animated-theme-toggler'
@@ -34,10 +35,13 @@ const navLinks: navLink[] = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [playClick] = useSound('/click-002.mp3')
   return (
     <nav className=" py-3 border-b">
       <div className="flex justify-between items-center">
-        <AnimatedThemeToggler />
+        <span onMouseDown={() => playClick()}>
+          <AnimatedThemeToggler />
+        </span>
         <h2 className="w-12 h-10 group">
           <Link href="/" className="block w-full h-full" aria-label="Home">
             <Logo className="  rounded-full w-fit h-fit text-primary  transition-all duration-300 ease-out group-hover:rotate-45" />
@@ -50,6 +54,7 @@ const Navbar = () => {
                 className="text-accent-foreground inline-block pb-1 relative group"
                 href={link.src}
                 target={link.isExternal ? '_blank' : '_self'}
+                onMouseDown={()=> playClick()}
               >
                 {link.label}
                 <span className="absolute rounded-sm bottom-0 left-0 w-full h-0.5 bg-accent group-hover:scale-x-100 scale-x-0 transition-transform duration-400 origin-center ease-in-out " />
