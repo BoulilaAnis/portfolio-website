@@ -50,7 +50,7 @@ const Navbar = () => {
                 target={link.isExternal ? '_blank' : '_self'}
               >
                 {link.label}
-                <span className="absolute rounded-sm bottom-0 left-0 w-full h-0.5 bg-accent group-hover:scale-x-100 scale-x-0 transition-transform duration-400 orgin-center ease-in-out " />
+                <span className="absolute rounded-sm bottom-0 left-0 w-full h-0.5 bg-accent group-hover:scale-x-100 scale-x-0 transition-transform duration-400 origin-center ease-in-out " />
               </Link>
             </li>
           ))}
@@ -63,13 +63,11 @@ const Navbar = () => {
           {!isOpen ? <HugeiconsIcon icon={Menu01Icon} /> : <HugeiconsIcon icon={Cancel02Icon} />}
         </Button>
         {isOpen && (
-          <div className="fixed">
-            <ul
-              className={`flex flex-col  w-screen h-screen  top-0 left-0 z-50 bg-accent fixed justify-center items-center gap-15`}
-            >
+          <div className="fixed w-screen h-screen  top-0 left-0 z-50 flex justify-center items-center backdrop-blur-sm bg-background/80">
+            <ul className="flex flex-col justify-center items-center gap-15 ">
               {navLinks.map((link: navLink) => (
                 <li key={link.src} className="">
-                  <Link className="text-secondary-foreground text-3xl" href={link.src}>
+                  <Link className="text-accent-foreground text-3xl" href={link.src}>
                     {link.label}
                   </Link>
                 </li>
