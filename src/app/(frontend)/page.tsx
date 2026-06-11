@@ -1,5 +1,10 @@
 import './styles.css'
+import Hero from '@/components/HomePage/Hero'
 
 export default async function HomePage() {
-  return <div></div>
+  return (
+    <div>
+      <Hero/>
+    </div>
+  )
 }
