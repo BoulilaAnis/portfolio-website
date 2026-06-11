@@ -79,13 +79,15 @@ const Hero = async () => {
               <WavyLine />
             </div>
             <div className="w-32 h-32 ">
-              <Image
-                className="rounded-full aspect-square object-cover scale-x-[-1] border-primary border-2"
-                src={hero.profilePic.url}
-                width={hero.profilePic.width}
-                height={hero.profilePic.height}
-                alt="Profile Picture"
-              />
+              {hero.profilePic && typeof hero.profilePic === 'object' && (
+                <Image
+                  className="rounded-full aspect-square object-cover scale-x-[-1] border-primary border-2"
+                  src={hero.profilePic.url || ''}
+                  width={hero.profilePic.width || 128}
+                  height={hero.profilePic.height || 128}
+                  alt="Profile Picture"
+                />
+              )}
             </div>
           </div>
         </div>
