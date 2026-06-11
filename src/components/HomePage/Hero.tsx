@@ -70,7 +70,7 @@ const Hero = async () => {
                     },
                   }}
                 >
-                  {hero.CraftsmanBio.map((list) => (
+                  {hero.CraftsmanBio?.map((list) => (
                     <span>{list.skill}</span>
                   ))}
                 </TextLoop>{' '}

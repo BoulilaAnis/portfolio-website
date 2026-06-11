@@ -358,12 +358,10 @@ export interface Hero {
   id: string;
   whoami?: string | null;
   welcomeBanner?: string | null;
-  CraftsmanBio?:
-    | {
-        skill?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  CraftsmanBio: {
+    skill?: string | null;
+    id?: string | null;
+  }[];
   profilePic: string | Media;
   updatedAt?: string | null;
   createdAt?: string | null;

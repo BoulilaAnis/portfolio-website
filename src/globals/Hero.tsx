@@ -14,6 +14,7 @@ export const Hero: GlobalConfig = {
     {
       name: 'CraftsmanBio',
       type: 'array',
+      required: true,
       fields: [
         {
           name: 'skill',
