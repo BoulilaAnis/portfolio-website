@@ -80,7 +80,7 @@ const Hero = async () => {
             </div>
             <div className="w-32 h-32 ">
               {hero.profilePic && typeof hero.profilePic === 'object' && (
-                <img
+                <Image
                   className="rounded-full aspect-square object-cover scale-x-[-1] border-primary border-2"
                   src={hero.profilePic.url || ''}
                   width={hero.profilePic.width || 128}
