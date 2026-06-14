@@ -2,7 +2,7 @@ import config from '@/payload.config'
 import { getPayload } from 'payload'
 import Image from 'next/image'
 
-export const SocialMedia = async () => {
+export const SocialLinks = async () => {
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
   const { docs: socialLinks } = await payload.find({
@@ -40,4 +40,4 @@ export const SocialMedia = async () => {
   )
 }
 
-export default SocialMedia
+export default SocialLinks

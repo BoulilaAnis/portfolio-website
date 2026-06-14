@@ -1,12 +1,12 @@
-import SocialLinks from '@/components/HomePage/SocialMedia'
+import SocialLinks from '@/components/HomePage/SocialLinks'
 import './styles.css'
 import Hero from '@/components/HomePage/Hero'
 
-export default async function HomePage() {
+export default function HomePage() {
   return (
     <div>
-      <Hero/>
-      <SocialLinks/>
+      <Hero />
+      <SocialLinks />
     </div>
   )
 }
