@@ -22,11 +22,5 @@ export const Technologies: CollectionConfig = {
       relationTo: 'media',
       required: false,
     },
-    {
-      name: 'category',
-      type: 'select',
-      options: ['frontend', 'backend', 'database'],
-      required: false,
-    },
   ],
 }
