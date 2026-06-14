@@ -41,7 +41,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
               {project.name}
             </MorphingDialogTitle>
             <span className="flex gap-1 items-center bg-white p-1 rounded-2xl ">
-              {project.technologies?.slice(0, 3).map((technologie) => (
+              {project.technologies?.slice(0, 3).map((technologie: any) => (
                 <Image
                   key={technologie.id}
                   className="w-6 h-6 object-contain"
@@ -52,7 +52,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 />
               ))}
 
-              {project.technologies?.length > 3 && (
+              {(project.technologies?.length || 0) > 3 && (
                 <span className="text-muted font-bold tracking-widest text-sm ml-1 select-none">
                   ...
                 </span>
@@ -86,7 +86,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
               <div className="mt-4 flex items-center justify-between">
                 <span className="flex gap-1 items-center bg-white p-1 rounded-2xl ">
-                  {project.technologies?.map((technologie) => (
+                  {project.technologies?.map((technologie: any) => (
                     <Image
                       key={technologie.id}
                       className="w-6 h-6 object-contain"
@@ -97,8 +97,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
                     />
                   ))}
                 </span>
-                <Link 
-                  href={project.link} 
+                <Link
+                  href={project.link}
                   target="_blank"
                   className="group relative text-sm font-medium pb-1"
                 >
