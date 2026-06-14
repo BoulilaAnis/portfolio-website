@@ -20,6 +20,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
         type: 'tween',
         bounce: 0.05,
         duration: 0.25,
+        stiffness: 200,
+        damping: 24,
       }}
     >
       <MorphingDialogTrigger>
@@ -77,11 +79,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
                   />
                 )}
               </div>
-              <MorphingDialogTitle className="text-4xl mt-4 font-semibold tracking-tight text-primary-foreground text-center">
+              <MorphingDialogTitle className="md:text-4xl text-3xl mt-4 font-semibold tracking-tight text-primary-foreground text-center">
                 {project.name}
               </MorphingDialogTitle>
-              <p className="text-xl mt-4 indent-6">
-                <q> {project.description} </q>
+              <p className="md:text-xl text-lg mt-4 indent-2 border rounded-xl py-1 px-2">
+                {project.description}
               </p>
 
               <div className="mt-4 flex items-center justify-between">
@@ -100,10 +102,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 <Link
                   href={project.link}
                   target="_blank"
-                  className="group relative text-sm font-medium pb-1"
+                  className="text-sm font-medium px-2 py-1 bg-accent rounded-lg text-accent-foreground hover:translate-x-2 duration-400 transition-all  not-hover:animate-pulse"
                 >
                   View Project &rarr;
-                  <span className="absolute left-0 bottom-0 h-0.5 w-full scale-x-0 bg-primary transition-all duration-300 group-hover:scale-x-100" />
                 </Link>
               </div>
             </div>
