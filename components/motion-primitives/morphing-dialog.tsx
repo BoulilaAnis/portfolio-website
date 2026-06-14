@@ -10,7 +10,7 @@ import useSound from 'use-sound'
 
 export type MorphingDialogContextType = {
   isOpen: boolean
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setIsOpen: (open: boolean | ((prev: boolean) => boolean)) => void
   uniqueId: string
   triggerRef: React.RefObject<HTMLButtonElement | null>
 }
@@ -31,25 +31,27 @@ export type MorphingDialogProviderProps = {
 }
 
 function MorphingDialogProvider({ children, transition }: MorphingDialogProviderProps) {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpenState] = useState(false)
   const uniqueId = useId()
   const triggerRef = useRef<HTMLButtonElement>(null!)
 
-  // Centralized sound hooks at the provider level
   const [maximizeSound] = useSound('/maximize-008.mp3')
   const [minimizeSound] = useSound('/minimize-008.mp3')
-  const isInitialMount = useRef(true)
 
-  // Automatically trigger sounds based on open/close state transitions
-  useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false
-      return
-    }
+  const setIsOpen = useCallback(
+    (value: boolean | ((prev: boolean) => boolean)) => {
+      setIsOpenState((prev) => {
+        const nextState = typeof value === 'function' ? value(prev) : value
 
-    if (isOpen) maximizeSound()
-    else minimizeSound()
-  }, [isOpen, maximizeSound, minimizeSound])
+        if (prev !== nextState) {
+          if (nextState) maximizeSound()
+          else minimizeSound()
+        }
+        return nextState
+      })
+    },
+    [maximizeSound, minimizeSound],
+  )
 
   const contextValue = useMemo(
     () => ({
@@ -58,7 +60,7 @@ function MorphingDialogProvider({ children, transition }: MorphingDialogProvider
       uniqueId,
       triggerRef,
     }),
-    [isOpen, uniqueId],
+    [isOpen, uniqueId, setIsOpen],
   )
 
   return (
