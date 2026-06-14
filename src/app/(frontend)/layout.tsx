@@ -1,6 +1,7 @@
 import React from 'react'
 import './styles.css'
 import Navbar from '@/components/Navbar/Navbar'
+import { Analytics } from '@vercel/analytics/next'
 
 export const metadata = {
   description: 'this is anis portfolio',
@@ -17,6 +18,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           <Navbar />
         </header>
         <main>{children}</main>
+        <Analytics />
       </body>
     </html>
   )
