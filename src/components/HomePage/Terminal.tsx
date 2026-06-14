@@ -2,14 +2,14 @@ import { AnimatedSpan, Terminal, TypingAnimation } from '../ui/terminal'
 import config from '@/payload.config'
 import { getPayload } from 'payload'
 
-const TerminalCard = async ({ className }: { className: string }) => {
+const TerminalCard = async ({ className }: { className?: string }) => {
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
   const hero = await payload.findGlobal({
     slug: 'hero',
   })
-  const { docs: skills } = await payload.find({
-    collection: 'skills',
+  const { docs: technologies } = await payload.find({
+    collection: 'technologies',
     select: { name: true },
   })
   return (
@@ -25,7 +25,7 @@ const TerminalCard = async ({ className }: { className: string }) => {
 
         <AnimatedSpan delay={3200} className="text-accent-foreground">
           <p className="text-primary whitespace-pre-wrap wrap-break-word">
-            {skills.map((skill) => skill.name).join(' / ')}
+            {technologies.map((technologie) => technologie.name).join(' / ')}
           </p>
         </AnimatedSpan>
 

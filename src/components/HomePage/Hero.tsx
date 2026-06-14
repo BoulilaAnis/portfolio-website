@@ -24,7 +24,7 @@ const Hero = async () => {
       <div className="w-full">
         <div className="flex flex-col justify-center items-center">
           <div className="lg:w-3xl md:w-xl w-full md:h-60 h-72">
-            <TerminalCard className="mt-9 " />
+            <TerminalCard />
           </div>
         </div>
         <div className="w-[79%] mx-auto">

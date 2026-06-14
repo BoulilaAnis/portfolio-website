@@ -8,8 +8,9 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
-import { Skills } from './collections/Skills'
+import { Technologies } from './collections/Technologies'
 import { Hero } from './globals/Hero'
+import { Projects } from './collections/Projects'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -22,7 +23,7 @@ export default buildConfig({
     },
   },
   globals: [Hero],
-  collections: [Users, Media, Skills],
+  collections: [Users, Media, Technologies, Projects],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -33,13 +34,13 @@ export default buildConfig({
   }),
   sharp,
   plugins: [
-    vercelBlobStorage({
-      enabled: true,
-      collections: {
-        media: true,
-      },
-      token: process.env.BLOB_READ_WRITE_TOKEN,
-      clientUploads: true,
-    }),
+    // vercelBlobStorage({
+    //   enabled: true,
+    //   collections: {
+    //     media: true,
+    //   },
+    //   token: process.env.BLOB_READ_WRITE_TOKEN,
+    //   clientUploads: true,
+    // }),
   ],
 })

@@ -4,7 +4,6 @@ import useSound from 'use-sound'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { Menu01Icon, Cancel02Icon, Github01Icon } from '@hugeicons/core-free-icons'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useState } from 'react'
 import { Button } from '../ui/button'
 import Logo from '@/components/Navbar/Logo'
@@ -37,7 +36,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [playClick] = useSound('/click-002.mp3')
   return (
-    <nav className=" py-3 border-b">
+    <nav className=" py-3 border-b mb-6">
       <div className="flex justify-between items-center">
         <span onMouseDown={() => playClick()}>
           <AnimatedThemeToggler />
@@ -63,7 +62,7 @@ const Navbar = () => {
           ))}
         </ul>
         <Button
-          className="z-70 md:hidden rounded-xl"
+          className="z-20 md:hidden rounded-xl bg-accent"
           variant="ghost"
           onClick={() => setIsOpen((prev) => !prev)}
           onMouseDown={() => playClick()}
@@ -71,7 +70,7 @@ const Navbar = () => {
           {!isOpen ? <HugeiconsIcon icon={Menu01Icon} /> : <HugeiconsIcon icon={Cancel02Icon} />}
         </Button>
         {isOpen && (
-          <div className="fixed w-screen h-screen  top-0 left-0 z-50 flex justify-center items-center backdrop-blur-sm bg-background/80">
+          <div className="fixed w-screen h-screen  top-0 left-0 z-10 flex justify-center items-center backdrop-blur-sm bg-background/80">
             <ul className="flex flex-col justify-center items-center gap-15 ">
               {navLinks.map((link: navLink) => (
                 <li key={link.src} className="">

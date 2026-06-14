@@ -69,7 +69,8 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    skills: Skill;
+    technologies: Technology;
+    projects: Project;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -79,7 +80,8 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    skills: SkillsSelect<false> | SkillsSelect<true>;
+    technologies: TechnologiesSelect<false> | TechnologiesSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -169,14 +171,28 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "skills".
+ * via the `definition` "technologies".
  */
-export interface Skill {
+export interface Technology {
   id: string;
   name: string;
   description?: string | null;
   logo?: (string | null) | Media;
   category?: ('frontend' | 'backend' | 'database') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: string;
+  name: string;
+  description: string;
+  link: string;
+  image: string | Media;
+  technologies?: (string | Technology)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -213,8 +229,12 @@ export interface PayloadLockedDocument {
         value: string | Media;
       } | null)
     | ({
-        relationTo: 'skills';
-        value: string | Skill;
+        relationTo: 'technologies';
+        value: string | Technology;
+      } | null)
+    | ({
+        relationTo: 'projects';
+        value: string | Project;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -300,13 +320,26 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "skills_select".
+ * via the `definition` "technologies_select".
  */
-export interface SkillsSelect<T extends boolean = true> {
+export interface TechnologiesSelect<T extends boolean = true> {
   name?: T;
   description?: T;
   logo?: T;
   category?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects_select".
+ */
+export interface ProjectsSelect<T extends boolean = true> {
+  name?: T;
+  description?: T;
+  link?: T;
+  image?: T;
+  technologies?: T;
   updatedAt?: T;
   createdAt?: T;
 }
