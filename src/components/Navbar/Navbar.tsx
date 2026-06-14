@@ -8,6 +8,7 @@ import { useState } from 'react'
 import { Button } from '../ui/button'
 import Logo from '@/components/Navbar/Logo'
 import { AnimatedThemeToggler } from '../ui/animated-theme-toggler'
+import { usePathname } from 'next/navigation'
 
 type navLink = {
   label: string | React.ReactNode
@@ -35,6 +36,7 @@ const navLinks: navLink[] = [
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [playClick] = useSound('/click-002.mp3')
+  const pathname = usePathname()
   return (
     <nav className=" py-3 border-b mb-6">
       <div className="flex justify-between items-center">
@@ -47,19 +49,24 @@ const Navbar = () => {
           </Link>
         </h2>
         <ul className="hidden md:flex gap-3">
-          {navLinks.map((link: navLink) => (
-            <li key={link.src} className="">
-              <Link
-                className="text-accent-foreground inline-block pb-1 relative group"
-                href={link.src}
-                target={link.isExternal ? '_blank' : '_self'}
-                onMouseDown={() => playClick()}
-              >
-                {link.label}
-                <span className="absolute rounded-sm bottom-0 left-0 w-full h-0.5 bg-accent group-hover:scale-x-100 scale-x-0 transition-transform duration-400 origin-center ease-in-out " />
-              </Link>
-            </li>
-          ))}
+          {navLinks.map((link: navLink) => {
+            const isActive = pathname === link.src
+            return (
+              <li key={link.src} className="">
+                <Link
+                  className="text-accent-foreground inline-block pb-1 relative group"
+                  href={link.src}
+                  target={link.isExternal ? '_blank' : '_self'}
+                  onMouseDown={() => playClick()}
+                >
+                  {link.label}
+                  <span
+                    className={`absolute rounded-sm bottom-0 left-0 w-full h-0.5 bg-accent group-hover:scale-x-100 ${isActive ? 'scale-x-100' : 'scale-x-0'} transition-transform duration-400 origin-center ease-in-out `}
+                  />
+                </Link>
+              </li>
+            )
+          })}
         </ul>
         <Button
           className="z-20 md:hidden rounded-xl bg-accent"
@@ -74,7 +81,11 @@ const Navbar = () => {
             <ul className="flex flex-col justify-center items-center gap-15 ">
               {navLinks.map((link: navLink) => (
                 <li key={link.src} className="">
-                  <Link className="text-accent-foreground text-3xl" href={link.src}>
+                  <Link
+                    onClick={() => setIsOpen(false)}
+                    className="text-accent-foreground text-3xl"
+                    href={link.src}
+                  >
                     {link.label}
                   </Link>
                 </li>
