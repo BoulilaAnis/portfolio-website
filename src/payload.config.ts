@@ -11,6 +11,7 @@ import { Media } from './collections/Media'
 import { Technologies } from './collections/Technologies'
 import { Hero } from './globals/Hero'
 import { Projects } from './collections/Projects'
+import { SocilaLinks } from './collections/SocialLinks'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -23,7 +24,7 @@ export default buildConfig({
     },
   },
   globals: [Hero],
-  collections: [Users, Media, Technologies, Projects],
+  collections: [Users, Media, Technologies, Projects, SocilaLinks],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     technologies: Technology;
     projects: Project;
+    sociallinks: Sociallink;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     technologies: TechnologiesSelect<false> | TechnologiesSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    sociallinks: SociallinksSelect<false> | SociallinksSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -178,7 +180,6 @@ export interface Technology {
   name: string;
   description?: string | null;
   logo?: (string | null) | Media;
-  category?: ('frontend' | 'backend' | 'database') | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -193,6 +194,18 @@ export interface Project {
   link: string;
   image: string | Media;
   technologies?: (string | Technology)[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sociallinks".
+ */
+export interface Sociallink {
+  id: string;
+  name: string;
+  link: string;
+  logo: string | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -235,6 +248,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'projects';
         value: string | Project;
+      } | null)
+    | ({
+        relationTo: 'sociallinks';
+        value: string | Sociallink;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -326,7 +343,6 @@ export interface TechnologiesSelect<T extends boolean = true> {
   name?: T;
   description?: T;
   logo?: T;
-  category?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -340,6 +356,17 @@ export interface ProjectsSelect<T extends boolean = true> {
   link?: T;
   image?: T;
   technologies?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sociallinks_select".
+ */
+export interface SociallinksSelect<T extends boolean = true> {
+  name?: T;
+  link?: T;
+  logo?: T;
   updatedAt?: T;
   createdAt?: T;
 }
