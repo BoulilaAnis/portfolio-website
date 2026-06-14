@@ -6,6 +6,7 @@ import { createPortal } from 'react-dom'
 import { cn } from '@/lib/utils'
 import { XIcon } from 'lucide-react'
 import useClickOutside from './useClickOutside'
+import useSound from 'use-sound'
 
 export type MorphingDialogContextType = {
   isOpen: boolean
@@ -33,6 +34,22 @@ function MorphingDialogProvider({ children, transition }: MorphingDialogProvider
   const [isOpen, setIsOpen] = useState(false)
   const uniqueId = useId()
   const triggerRef = useRef<HTMLButtonElement>(null!)
+
+  // Centralized sound hooks at the provider level
+  const [maximizeSound] = useSound('/maximize-008.mp3')
+  const [minimizeSound] = useSound('/minimize-008.mp3')
+  const isInitialMount = useRef(true)
+
+  // Automatically trigger sounds based on open/close state transitions
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+      return
+    }
+
+    if (isOpen) maximizeSound()
+    else minimizeSound()
+  }, [isOpen, maximizeSound, minimizeSound])
 
   const contextValue = useMemo(
     () => ({
