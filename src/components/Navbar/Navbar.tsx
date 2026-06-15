@@ -13,13 +13,12 @@ import { usePathname } from 'next/navigation'
 type navLink = {
   label: string | React.ReactNode
   src: string
-  isExternal: boolean
+  isExternal?: boolean
 }
 const navLinks: navLink[] = [
   {
     label: 'Home',
     src: '/',
-    isExternal: false,
   },
   {
     label: 'Projects',
@@ -56,7 +55,7 @@ const Navbar = () => {
                 <Link
                   className="text-accent-foreground inline-block pb-1 relative group"
                   href={link.src}
-                  target={link.isExternal ? '_blank' : '_self'}
+                  target={link?.isExternal ? '_blank' : '_self'}
                   onMouseDown={() => playClick()}
                 >
                   {link.label}
