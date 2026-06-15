@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import {
@@ -12,6 +13,7 @@ import {
 import { Project } from '@/payload-types'
 import { XIcon } from 'lucide-react'
 import Link from 'next/link'
+import { useState } from 'react'
 
 const ProjectCard = ({ project }: { project: Project }) => {
   return (
@@ -88,16 +90,23 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
               <div className="mt-4 flex items-center justify-between">
                 <span className="flex gap-1 items-center bg-white p-1 rounded-2xl ">
-                  {project.technologies?.map((technologie: any) => (
-                    <Image
-                      key={technologie.id}
-                      className="w-6 h-6 object-contain"
-                      src={technologie.logo.url}
-                      alt={technologie.name || 'technology logo'}
-                      width={technologie.logo.width}
-                      height={technologie.logo.height}
-                    />
-                  ))}
+                  {project.technologies?.map((technology: any) => {
+                    return (
+                      <div className="relative group">
+                        <Image
+                          key={technology.id}
+                          className="w-6 h-6 object-contain cursor-pointer "
+                          src={technology.logo.url}
+                          alt={technology.name || 'technology logo'}
+                          width={technology.logo.width}
+                          height={technology.logo.height}
+                        />
+                        <span className="absolute -top-10 left-0 bg-primary text-primary-foreground py-1 px-2 scale-0 group-hover:scale-100 rounded-lg">
+                          {technology.name}
+                        </span>
+                      </div>
+                    )
+                  })}
                 </span>
                 <Link
                   href={project.link}

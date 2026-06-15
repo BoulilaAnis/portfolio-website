@@ -1,7 +1,7 @@
 import config from '@/payload.config'
 import { getPayload } from 'payload'
 import Image from 'next/image'
-import ProjectCard from '@/components/Projects/card'
+import ProjectCard from '@/components/Projects/ProjectCard'
 
 const projects = async () => {
   const payloadConfig = await config
