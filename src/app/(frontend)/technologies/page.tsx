@@ -18,22 +18,29 @@ const technologies = async () => {
     collection: 'technologies',
   })
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(216px,1fr))] gap-5 justify-center justify-items-center w-full">
+    <div className="grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-6 justify-center justify-items-center w-full max-w-7xl mx-auto px-4">
       {technologies.map((technology) => {
         const logo = technology?.logo as Media | undefined
 
         return (
           <MorphingDialog key={technology.id}>
-            <MorphingDialogTrigger>
-              <div className="bg-primary text-primary-foreground flex flex-col justify-center items-center py-2 px-3 rounded-lg min-h-48 min-w-54">
+            <MorphingDialogTrigger className="w-full max-w-[320px]">
+              <div className="bg-primary text-primary-foreground flex flex-col justify-center items-center p-6 rounded-xl h-52 w-full text-center shadow-md transition-transform hover:scale-[1.02] duration-300">
                 {logo?.url && (
-                  <MorphingDialogImage src={logo.url} alt={logo.alt || `${technology.name} logo`} />
+                  <div className="h-20 flex items-center justify-center mb-3">
+                    <MorphingDialogImage
+                      className="max-h-full w-auto object-contain"
+                      src={logo.url}
+                      alt={logo.alt || 'logo'}
+                    />
+                  </div>
                 )}
 
-                <MorphingDialogTitle className="text-3xl tracking-tight font-serif">
+                <MorphingDialogTitle className="text-2xl md:text-3xl tracking-tight font-serif line-clamp-1">
                   {technology?.name}
                 </MorphingDialogTitle>
-                <MorphingDialogSubtitle className="text-xl font-light">
+
+                <MorphingDialogSubtitle className="text-sm md:text-base font-light opacity-80 mt-1">
                   {technology?.description
                     ? technology?.description.split(' ').length > 3
                       ? technology.description.split(' ').slice(0, 3).join(' ') + '...'
@@ -44,20 +51,25 @@ const technologies = async () => {
             </MorphingDialogTrigger>
 
             <MorphingDialogContainer>
-              <MorphingDialogContent className="min-w-[50vw] min-h-[60vh] bg-primary text-primary-foreground flex flex-col justify-center items-center py-2 px-3 rounded-lg">
-                <div className="bg-secondary rounded-lg py-3 px-5 flex flex-col items-center justify-center ">
+              {/* Dialog Box: Fluid width scales nicely on mobile (90vw) up to desktop (50vw) */}
+              <MorphingDialogContent className="w-[90vw] sm:w-[70vw] md:w-[50vw] max-w-2xl min-h-[50vh] md:min-h-[60vh] bg-primary text-primary-foreground flex flex-col justify-center items-center p-6 md:p-10 rounded-2xl shadow-2xl">
+                <div className="bg-secondary rounded-xl p-6 flex flex-col items-center justify-center w-full max-w-md">
                   {logo?.url && (
-                    <MorphingDialogImage
-                      src={logo.url}
-                      alt={logo.alt || `${technology.name} logo`}
-                    />
+                    <div className="h-24 md:h-36 flex items-center justify-center mb-4">
+                      <MorphingDialogImage
+                        className="max-h-full w-auto object-contain"
+                        src={logo.url}
+                        alt={logo.alt || 'logo'}
+                      />
+                    </div>
                   )}
 
-                  <MorphingDialogTitle className="text-3xl tracking-tight font-serif text-ac-foreground">
+                  <MorphingDialogTitle className="text-2xl md:text-4xl tracking-tight font-serif text-center text-ac-foreground">
                     {technology?.name}
                   </MorphingDialogTitle>
                 </div>
-                <MorphingDialogSubtitle className="md:text-2xl text-lg font-light mt-5">
+
+                <MorphingDialogSubtitle className="text-base md:text-xl font-light mt-6 text-center max-w-xl leading-relaxed opacity-90">
                   {technology?.description}
                 </MorphingDialogSubtitle>
               </MorphingDialogContent>
