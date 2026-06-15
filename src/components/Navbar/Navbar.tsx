@@ -23,7 +23,10 @@ const navLinks: navLink[] = [
   {
     label: 'Projects',
     src: '/projects',
-    isExternal: false,
+  },
+  {
+    label: 'Technologies',
+    src: '/technologies',
   },
   {
     label: <HugeiconsIcon icon={Github01Icon} />,
