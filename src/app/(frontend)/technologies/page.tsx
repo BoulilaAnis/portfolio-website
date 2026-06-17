@@ -9,7 +9,9 @@ import {
   MorphingDialogSubtitle,
   MorphingDialogTitle,
   MorphingDialogTrigger,
+  MorphingDialogClose,
 } from 'components/motion-primitives/morphing-dialog'
+import { XIcon } from 'lucide-react'
 
 const technologies = async () => {
   const payloadConfig = await config
@@ -73,6 +75,17 @@ const technologies = async () => {
                   {technology?.description}
                 </MorphingDialogSubtitle>
               </MorphingDialogContent>
+
+              <MorphingDialogClose
+                className="absolute right-5 top-4 h-fit w-fit rounded-lg bg-accent p-1 z-50"
+                variants={{
+                  initial: { opacity: 0 },
+                  animate: { opacity: 1, transition: { delay: 0.3, duration: 0.1 } },
+                  exit: { opacity: 0, transition: { duration: 0 } },
+                }}
+              >
+                <XIcon className="h-6 w-6 text-accent-foreground cursor-pointer" />
+              </MorphingDialogClose>
             </MorphingDialogContainer>
           </MorphingDialog>
         )
