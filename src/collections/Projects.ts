@@ -1,9 +1,14 @@
 import type { CollectionConfig } from 'payload'
+import { revalidate } from '@/hooks/revalidate'
 
 export const Projects: CollectionConfig = {
   slug: 'projects',
   admin: {
     useAsTitle: 'name',
+  },
+  hooks: {
+    afterChange: [revalidate],
+    afterDelete: [revalidate],
   },
   fields: [
     {

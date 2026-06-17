@@ -1,7 +1,11 @@
 import type { GlobalConfig } from 'payload'
+import { revalidate } from '@/hooks/revalidate'
 
 export const Hero: GlobalConfig = {
   slug: 'hero',
+  hooks: {
+    afterChange: [revalidate],
+  },
   fields: [
     {
       name: 'whoami',
