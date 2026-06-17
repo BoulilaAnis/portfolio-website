@@ -22,7 +22,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
       transition={{ type: 'tween', bounce: 0.05, duration: 0.25, stiffness: 200, damping: 24 }}
     >
       <MorphingDialogTrigger className="w-full text-left block">
-        <div className="group w-full max-w-xl rounded-xl border border-border bg-secondary p-6 text-secondary-foreground shadow-sm transition-all hover:shadow-md">
+        <div className="group min-h-[260px] max-w-xl rounded-xl border border-border bg-secondary p-6 text-secondary-foreground shadow-sm transition-all hover:shadow-md">
           <div>
             {image?.url && (
               <MorphingDialogImage
@@ -66,7 +66,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
       <MorphingDialogContainer>
         <MorphingDialogContent className="w-[95vw] sm:w-[85vw] md:w-[60vw] max-w-3xl rounded-xl bg-secondary text-secondary-foreground">
-          <ScrollArea className="h-[85vh] w-full">
+          <ScrollArea className="max-h-[85dvh] w-full">
             <div className="p-6 border border-border rounded-xl">
               <div>
                 {image?.url && (
