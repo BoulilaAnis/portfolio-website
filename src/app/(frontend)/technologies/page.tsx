@@ -54,26 +54,28 @@ const technologies = async () => {
 
             <MorphingDialogContainer>
               {/* Dialog Box: Fluid width scales nicely on mobile (90vw) up to desktop (50vw) */}
-              <MorphingDialogContent className="w-[90vw] sm:w-[70vw] md:w-[50vw] max-w-2xl min-h-[50vh] md:min-h-[60vh] bg-primary text-primary-foreground flex flex-col justify-center items-center p-6 md:p-10 rounded-2xl shadow-2xl">
-                <div className="bg-secondary rounded-xl p-6 flex flex-col items-center justify-center w-full max-w-md">
-                  {logo?.url && (
-                    <div className="h-24 md:h-36 flex items-center justify-center mb-4">
-                      <MorphingDialogImage
-                        className="max-h-full w-auto object-contain"
-                        src={logo.url}
-                        alt={logo.alt || 'logo'}
-                      />
-                    </div>
-                  )}
+              <MorphingDialogContent className="w-[90vw] sm:w-[70vw] md:w-[50vw] max-w-2xl max-h-[85dvh] overflow-y-auto rounded-xl bg-primary text-primary-foreground shadow-2xl">
+                <div className="flex flex-col justify-center items-center p-6 md:p-10 min-h-[50vh] md:min-h-[60vh]">
+                  <div className="bg-secondary rounded-xl p-6 flex flex-col items-center justify-center w-full max-w-md">
+                    {logo?.url && (
+                      <div className="h-24 md:h-36 flex items-center justify-center mb-4">
+                        <MorphingDialogImage
+                          className="max-h-full w-auto object-contain"
+                          src={logo.url}
+                          alt={logo.alt || 'logo'}
+                        />
+                      </div>
+                    )}
 
-                  <MorphingDialogTitle className="text-2xl md:text-4xl tracking-tight font-serif text-center text-ac-foreground">
-                    {technology?.name}
-                  </MorphingDialogTitle>
+                    <MorphingDialogTitle className="text-2xl md:text-4xl tracking-tight font-serif text-center text-ac-foreground">
+                      {technology?.name}
+                    </MorphingDialogTitle>
+                  </div>
+
+                  <MorphingDialogSubtitle className="text-base md:text-xl font-light mt-6 text-center max-w-xl leading-relaxed opacity-90">
+                    {technology?.description}
+                  </MorphingDialogSubtitle>
                 </div>
-
-                <MorphingDialogSubtitle className="text-base md:text-xl font-light mt-6 text-center max-w-xl leading-relaxed opacity-90">
-                  {technology?.description}
-                </MorphingDialogSubtitle>
               </MorphingDialogContent>
 
               <MorphingDialogClose

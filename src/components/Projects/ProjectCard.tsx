@@ -1,6 +1,5 @@
 'use client'
 import Image from 'next/image'
-import { ScrollArea } from '@/components/ui/scroll-area'
 import {
   MorphingDialog,
   MorphingDialogTrigger,
@@ -22,18 +21,18 @@ const ProjectCard = ({ project }: { project: Project }) => {
       transition={{ type: 'tween', bounce: 0.05, duration: 0.25, stiffness: 200, damping: 24 }}
     >
       <MorphingDialogTrigger className="w-full text-left block">
-        <div className="group min-h-[260px] max-w-xl rounded-xl border border-border bg-secondary p-6 text-secondary-foreground shadow-sm transition-all hover:shadow-md">
-          <div>
+        <div className="group flex flex-col h-72 max-w-xl rounded-xl border border-border bg-secondary p-6 text-secondary-foreground shadow-sm transition-all hover:shadow-md">
+          <div className="flex-1 overflow-hidden rounded-md">
             {image?.url && (
               <MorphingDialogImage
-                className="rounded-md w-full object-cover"
+                className="w-full h-full object-cover"
                 src={image.url}
                 alt={image.alt}
               />
             )}
           </div>
 
-          <div className="mt-4 flex items-center justify-between gap-4">
+          <div className="mt-4 flex items-center justify-between gap-4 shrink-0">
             <MorphingDialogTitle className="text-xl font-semibold tracking-tight text-secondary-foreground line-clamp-1">
               {project.name}
             </MorphingDialogTitle>
@@ -65,13 +64,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
       </MorphingDialogTrigger>
 
       <MorphingDialogContainer>
-        <MorphingDialogContent className="w-[95vw] sm:w-[85vw] md:w-[60vw] max-w-3xl rounded-xl bg-secondary text-secondary-foreground">
-          <ScrollArea className="max-h-[85dvh] w-full">
-            <div className="p-6 border border-border rounded-xl">
+        <MorphingDialogContent className="w-[95vw] sm:w-[85vw] md:w-[60vw] max-w-3xl max-h-[85dvh] overflow-y-auto rounded-xl bg-secondary text-secondary-foreground">
+          <div className="p-6 border border-border rounded-xl">
               <div>
                 {image?.url && (
                   <MorphingDialogImage
-                    className="rounded-md w-full max-h-[40vh] object-cover object-top"
+                    className="rounded-md w-full max-h-[40dvh] object-cover object-top"
                     src={image.url}
                     alt={image.alt}
                   />
@@ -112,7 +110,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 </span>
 
                 <Link
-                  href={project.link || '#'}
+                  href={project.link}
                   target="_blank"
                   className="text-sm font-medium px-4 py-2 bg-accent rounded-lg text-accent-foreground text-center hover:translate-x-1 duration-200 transition-all animate-pulse hover:animate-none shrink-0"
                 >
@@ -120,7 +118,6 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 </Link>
               </div>
             </div>
-          </ScrollArea>
         </MorphingDialogContent>
 
         <MorphingDialogClose
