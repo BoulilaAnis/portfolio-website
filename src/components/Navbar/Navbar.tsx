@@ -45,9 +45,9 @@ const Navbar = () => {
         <span onMouseDown={() => playClick()}>
           <AnimatedThemeToggler />
         </span>
-        <h2 className="w-12  group">
+        <h2 className="w-12 h-12 group">
           <Link href="/" className="block w-full h-full" aria-label="Home">
-            <Logo className="  rounded-full w-fit h-fit text-primary  transition-all duration-300 ease-out group-hover:rotate-45" />
+            <Logo className="  rounded-full w-full h-full text-primary  transition-all duration-300 ease-out group-hover:rotate-45" />
           </Link>
         </h2>
         <ul className="hidden md:flex gap-3">
